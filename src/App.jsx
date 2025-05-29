@@ -7,9 +7,9 @@ import { useRoutes } from "react-router";
 import CateguryFoods from "./assets/Components/CateguryFoods/CateguryFoods.jsx";
 import UserBasket from "./assets/Components/UserBasket/UserBasket";
 import "leaflet/dist/leaflet.css";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
-
   return (
     <div>
       {/* <UserBasket/> */}

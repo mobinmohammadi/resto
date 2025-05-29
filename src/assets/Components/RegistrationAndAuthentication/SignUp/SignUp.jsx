@@ -1,11 +1,11 @@
 import axios from "axios";
 import { useFormik } from "formik";
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
 
 export default function SignUp() {
   const baseUrl = import.meta.env.VITE_BASE_URL;
 
-    
   const styleWrapperSiginUp = useRef(null);
   const styleWrapperSiginUpMobile = useRef(null);
   useLayoutEffect(() => {
@@ -31,32 +31,54 @@ export default function SignUp() {
       email: "",
       phone: "",
       password: "",
-      rol : "customer"
     },
     onSubmit: async (values, { setSubmitting, resetForm }) => {
-        fetch(`${baseUrl}/registration` , {
-            method : "POST",
-            headers : {
-                'Content-Type': 'application/json',
-            },
-            body : JSON.stringify(values)
-        }).then(res => console.log(res)
-        )
-//   try {
-//     const response = await axios.post(`${baseUrl}/registration`, values , {
-//         headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     });
-//     console.log("✅ ثبت‌نام موفق:", response.data);
-//     resetForm(); // اختیاری
-//   } catch (error) {
-//     console.error("❌ خطا در ثبت‌نام:", error);
-//   } finally {
-//     setSubmitting(false);
-//   }
-},
+      const newUser = {
+        name: values.name,
+        email: values.email,
+        password: values.password,
+        phone_number: values.phone,
+        role: "customer",
+      };
+      console.log(newUser);
 
+      try {
+        const response = await fetch(`${baseUrl}/registration`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newUser),
+        });
+
+        const data = await response.json();
+        console.log(data);
+        if(response.status == 201){
+          toast.success("ثبت‌نام با موفقیت انجام شد ✅");
+
+        }
+        
+        else {
+
+          toast.success("خطای ناشناس ♻");
+        }
+        // else if (!response.ok) {
+        //   // اگر خطا از سمت سرور اومده (مثلاً ایمیل تکراری)
+        //   const message = data.message || "خطا در ثبت‌نام 😓";
+        //   toast.error(message);
+        // } else {
+          // resetForm();
+        
+      } catch (error) {
+        if(response.status === 409 ){
+          const message = data.message || "این کاربر از قبل وجود داشته است 🙁";
+          toast.error(message);
+        }
+        console.error("Fetch error:", error);
+      } finally {
+        setSubmitting(false);
+      }
+    },
   });
 
   return (
@@ -189,6 +211,7 @@ export default function SignUp() {
           </button>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 }
