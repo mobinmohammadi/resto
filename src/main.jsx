@@ -11,6 +11,7 @@ import PanelSellerResturants from "./assets/Page/Home/PanelSellerResturants/Pane
 import NewRestourants from "./assets/Components/PanelSaller/HomeSellerPanel/NewRestourants/NewRestourants.jsx";
 import HomePanel from "./assets/Components/PanelSaller/HomeSellerPanel/HomePanel/HomePanel.jsx";
 import SignUp from "./assets/Page/Home/SignUp/SignUp.jsx";
+import Login from "./assets/Components/RegistrationAndAuthentication/Login/Login.jsx";
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
     <Routes>
@@ -18,6 +19,7 @@ createRoot(document.getElementById("root")).render(
       <Route path="/categuryfoods" element={<CateguryFoods />} />
       <Route path="/restorant/:ResoruntID" element={<SinglePageRestorant />} />
       <Route path="/restorant/Signup" element={<SignUp />} />
+      <Route path="/restorant/Login" element={<Login />} />
       <Route path="/sallerpanel/*" element={<PanelSellerResturants />}>
         <Route path="home" element={<HomePanel />} />
         <Route path="newrestorants" element={<NewRestourants />} />

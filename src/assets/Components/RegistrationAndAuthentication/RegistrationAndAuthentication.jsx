@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 export default function RegistrationAndAuthentication() {
+  const [isShowWhatsAuthentication , setIsShowWhatsAuthentication] = useState(false)
   return (
-    <div>RegistrationAndAuthentication</div>
+    <div>
+        
+    </div>
   )
 }

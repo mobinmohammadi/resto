@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useFormik } from "formik";
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { Link } from "react-router";
 import { toast, ToastContainer } from "react-toastify";
 
 export default function SignUp() {
@@ -53,13 +54,9 @@ export default function SignUp() {
 
         const data = await response.json();
         console.log(data);
-        if(response.status == 201){
+        if (response.status == 201) {
           toast.success("ثبت‌نام با موفقیت انجام شد ✅");
-
-        }
-        
-        else {
-
+        } else {
           toast.success("خطای ناشناس ♻");
         }
         // else if (!response.ok) {
@@ -67,10 +64,9 @@ export default function SignUp() {
         //   const message = data.message || "خطا در ثبت‌نام 😓";
         //   toast.error(message);
         // } else {
-          // resetForm();
-        
+        // resetForm();
       } catch (error) {
-        if(response.status === 409 ){
+        if (response.status === 409) {
           const message = data.message || "این کاربر از قبل وجود داشته است 🙁";
           toast.error(message);
         }
@@ -94,9 +90,12 @@ export default function SignUp() {
           آیا در رستوران <span className="text-green-400">رازینه</span> حساب
           کاربری داری 🤔 ؟
         </span>
-        <button className="border-white border-solid hover:bg-zinc-700 transition-all border-1 cursor-pointer pr-6 pl-6 sm:pr-10 sm:pl-10 rounded-sm text-xs sm:text-sm pt-1 pb-1">
+        <Link
+          to="/restorant/Login"
+          className="border-white border-solid hover:bg-zinc-700 transition-all border-1 cursor-pointer pr-6 pl-6 sm:pr-10 sm:pl-10 rounded-sm text-xs sm:text-sm pt-1 pb-1"
+        >
           ورود
-        </button>
+        </Link>
       </div>
       <div className="bg-white  xs:relative w-full xs:w-[440px] sm:w-[640px]   p-5  shadow-2xl">
         <div className="flex items-center flex-col w-full xs:w-[50%]  gap-10 justify-center">
@@ -206,9 +205,12 @@ export default function SignUp() {
             آیا در رستوران <span className="text-green-400">رازینه</span> حساب
             کاربری داری 🤔 ؟
           </span>
-          <button className="border-white border-solid hover:bg-zinc-700 transition-all border-1 cursor-pointer pr-6 pl-6 sm:pr-10 sm:pl-10 rounded-sm text-xs sm:text-sm pt-1 pb-1">
+          <Link
+            to="/restorant/Login"
+            className="border-white border-solid hover:bg-zinc-700 transition-all border-1 cursor-pointer pr-6 pl-6 sm:pr-10 sm:pl-10 rounded-sm text-xs sm:text-sm pt-1 pb-1"
+          >
             ورود
-          </button>
+          </Link>
         </div>
       </div>
       <ToastContainer />

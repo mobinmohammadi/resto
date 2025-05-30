@@ -4,7 +4,7 @@ import EasyAddress from "../EasyAddress/EasyAddress";
 import UserBasket from "../UserBasket/UserBasket";
 import { Link } from "react-router";
 
-export default function Topbar({arrayUserBasket}) {
+export default function Topbar({ arrayUserBasket }) {
   const [isShowModalLogin, setIsShowModalLogin] = useState(false);
   const [isShowUserBasket, setIsShowUserBasket] = useState(false);
   const [isShowLayer, setIsShowLayer] = useState(false);
@@ -16,7 +16,6 @@ export default function Topbar({arrayUserBasket}) {
   const openModalHandler = (e) => {
     modalLogin.current.style.bottom = "0";
     modalLogin.current.style.transition = "all 0.5s ease";
-    
   };
 
   const closeUserBasket = () => {
@@ -323,12 +322,12 @@ export default function Topbar({arrayUserBasket}) {
                       <use href="#archive-box-arrow-down"></use>
                     </svg>
                   </li>
-                  <li>
-                    <Link to="/restorant/Signup">ثبت نام</Link>
+                  <Link to="/restorant/Signup">
+                    <li>ثبت نام</li>
                     <svg className="w-6 h-6">
                       <use href="#heart"></use>
                     </svg>
-                  </li>
+                  </Link>
                 </ul>
               </div>
             </div>
@@ -394,7 +393,11 @@ export default function Topbar({arrayUserBasket}) {
             </div>
           </div>
         </div>
-         <UserBasket isShowUserBasket={isShowUserBasket} arrayUserBasket={arrayUserBasket} cancelAction={closeUserBasket} />
+        <UserBasket
+          isShowUserBasket={isShowUserBasket}
+          arrayUserBasket={arrayUserBasket}
+          cancelAction={closeUserBasket}
+        />
         {isShowLayer && (
           <div
             onClick={() => {
